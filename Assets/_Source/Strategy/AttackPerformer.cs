@@ -9,7 +9,7 @@ public class AttackPerformer
     [SerializeField] private Animator _anim;
     [SerializeField] private Button[] _buttons;
 
-    AttackContext attackContext;
+    Player attackContext;
     private Attack1 attack1;
     private Attack2 attack2;
     private Attack3 attack3;
@@ -34,7 +34,7 @@ public class AttackPerformer
 
     public void Awake()
     {
-        attackContext = new AttackContext(_anim);
+        attackContext = new Player(_anim);
         attack1 = new Attack1();
         attack2 = new Attack2();
         attack3 = new Attack3();

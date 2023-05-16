@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackContext
+public class Player
 {
     private Animator anim;
     private IAttackStrategy attackStrategy;
     public event Action OnAttack;
-    public AttackContext(Animator anim)
+    public Player(Animator anim)
     {
         this.anim = anim;
     }

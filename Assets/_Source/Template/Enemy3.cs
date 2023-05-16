@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy3 : EnemyAttack
 {
-    AttackContext attackContext;
+    Player attackContext;
 
     private Animator anim;
     public Enemy3(Animator anim)

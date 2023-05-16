@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack2 : IAttackStrategy
 {
-    AttackContext attackContext;
+    Player attackContext;
     public void Attack(Animator anim)
     {
         anim.SetTrigger("Attack2");
