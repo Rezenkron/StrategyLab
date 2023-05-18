@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack3 : IAttackStrategy
 {
     public void Attack(Animator anim)
     {
-        anim.SetTrigger("Attack3");
+        anim.SetTrigger(HashedAnimations.Attack3);
     }
 }

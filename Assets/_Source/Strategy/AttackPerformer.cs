@@ -1,88 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
-public class AttackPerformer
+public class AttackPerformer : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
-    [SerializeField] private Button[] _buttons;
 
-    Player attackContext;
+    [SerializeField] private Button button1;
+    [SerializeField] private Button button2;
+    [SerializeField] private Button button3;
+
+    Player player;
+
     private Attack1 attack1;
     private Attack2 attack2;
     private Attack3 attack3;
 
-
-    public AttackPerformer(Animator anim, Button[] buttons)
+    private void OnEnable()
     {
-        _anim = anim;
-        _buttons = buttons;
-        buttons[0].onClick.AddListener(Attack1);
-        buttons[1].onClick.AddListener(Attack2);
-        buttons[2].onClick.AddListener(Attack3);
+        button1.onClick.AddListener(() => Attack(attack1, button1));
+        button2.onClick.AddListener(() => Attack(attack2, button2));
+        button3.onClick.AddListener(() => Attack(attack3, button3));
     }
 
-    public void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            attackContext.PerformAttack();
+            player.PerformAttack();
         }
     }
 
-    public void Awake()
+    private void Awake()
     {
-        attackContext = new Player(_anim);
+        player = new Player(_anim);
         attack1 = new Attack1();
         attack2 = new Attack2();
         attack3 = new Attack3();
     }
+    
+    private void Attack(IAttackStrategy strategy, Button button)
+    {
+        player.SetStrategy(strategy);
+        ChangeButtonColor(button);
+    }
 
-    public void Attack1()
+    private void ChangeButtonColor(Button button)
     {
-        attackContext.SetStrategy(attack1);
-        for(int i = 0; i<=_buttons.Length-1; i++)
+        Button[] buttons = new Button[] { button1, button2, button3 };
+        for(int i = 0; i < buttons.Length; i++)
         {
-            if(i == 0)
+            if (buttons[i] == button)
             {
-                _buttons[i].image.color = _buttons[i].colors.selectedColor;
-            } 
-            else
+                buttons[i].image.color = Color.yellow;
+            }
+            else if (buttons[i] != button)
             {
-                _buttons[i].image.color = _buttons[i].colors.normalColor;
+                buttons[i].image.color = Color.white;
             }
         }
     }
-    public void Attack2()
+    private void OnDisable()
     {
-        attackContext.SetStrategy(attack2);
-        for (int i = 0; i <= _buttons.Length-1; i++)
-        {
-            if (i == 1)
-            {
-                _buttons[i].image.color = _buttons[i].colors.selectedColor;
-            }
-            else
-            {
-                _buttons[i].image.color = _buttons[i].colors.normalColor;
-            }
-        }
-    }
-    public void Attack3()
-    {
-        attackContext.SetStrategy(attack3);
-        for (int i = 0; i <= _buttons.Length-1; i++)
-        {
-            if (i == 2)
-            {
-                _buttons[i].image.color = _buttons[i].colors.selectedColor;
-            }
-            else
-            {
-                _buttons[i].image.color = _buttons[i].colors.normalColor;
-            }
-        }
+        button1.onClick.RemoveAllListeners();
+        button2.onClick.RemoveAllListeners();
+        button3.onClick.RemoveAllListeners();
     }
 }

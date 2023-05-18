@@ -152,19 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35eb6858fe917414fa19273728407d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 1980159140}
-  enemyAnimator:
-  - {fileID: 9006460627860365893, guid: 257294bd5fdd4a446ac501425fcc37da, type: 3}
-  - {fileID: 884912157886248286, guid: 9c043b9c7061fb74ab605aad05303a3f, type: 3}
-  - {fileID: 4012642659212180700, guid: a8aec97d296955a468275784685c5bf9, type: 3}
-  buttons:
-  - {fileID: 1252496112}
-  - {fileID: 936797131}
-  - {fileID: 1580955555}
-  enemies:
-  - {fileID: 9006460627860365892, guid: 257294bd5fdd4a446ac501425fcc37da, type: 3}
-  - {fileID: 884912157886248284, guid: 9c043b9c7061fb74ab605aad05303a3f, type: 3}
-  - {fileID: 4012642659212180702, guid: a8aec97d296955a468275784685c5bf9, type: 3}
+  attackPerformer: {fileID: 0}
+  enemySwitcher: {fileID: 0}
 --- !u!4 &444936213
 Transform:
   m_ObjectHideFlags: 0
@@ -644,7 +633,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.20639856, g: 0.8301887, b: 0.035243843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -766,7 +755,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.20639856, g: 0.8301887, b: 0.035243843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1054,9 +1043,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.20639856, g: 0.8301887, b: 0.035243843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1260,6 +1249,7 @@ GameObject:
   - component: {fileID: 1980159139}
   - component: {fileID: 1980159141}
   - component: {fileID: 1980159140}
+  - component: {fileID: 1980159142}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1284,7 +1274,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1980159140
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1301,7 +1291,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1980159141
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1354,6 +1345,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1980159142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980159138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8fce5f5fc80da4e99f09a1039c8071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 1980159140}
+  button1: {fileID: 1252496112}
+  button2: {fileID: 936797131}
+  button3: {fileID: 1580955555}
 --- !u!1 &1994509674
 GameObject:
   m_ObjectHideFlags: 0
